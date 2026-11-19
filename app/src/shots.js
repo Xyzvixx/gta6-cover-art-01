@@ -22,7 +22,7 @@ async function stage() {
   const grade = params.get('grade');
   if (grade && ['sunset', 'neon', 'golden', 'noir'].includes(grade)) state.grade = grade;
   const size = params.get('size');
-  if (size && ['square', 'portrait', 'wide'].includes(size)) state.size = size;
+  if (size && ['square', 'portrait', 'wide', 'story'].includes(size)) state.size = size;
   const caption = params.get('caption');
   if (caption) {
     state.title = caption;

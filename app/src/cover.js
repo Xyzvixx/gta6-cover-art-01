@@ -1,6 +1,6 @@
 export const LAYOUTS = { vice: 'Vice Cover', poster: 'Poster', triptych: 'Triptych', strip: 'Strip' };
 export const GRADES = { sunset: 'Vice Sunset', neon: 'Neon Night', golden: 'Golden Hour', noir: 'Palm Noir' };
-export const SIZES = { square: [1080, 1080], portrait: [1080, 1350], wide: [1920, 1080] };
+export const SIZES = { square: [1080, 1080], portrait: [1080, 1350], wide: [1920, 1080], story: [1080, 1920] };
 
 const PALETTES = {
   sunset: {
