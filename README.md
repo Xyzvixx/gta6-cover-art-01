@@ -1,8 +1,8 @@
 # Vice Cover Studio
 
-[![🎬 Make GTA 6 Cover Art — make.fun](https://make.fun/c/gta6-cover-art-01)](https://make.fun/c/gta6-cover-art-01)
-[![🏆 make.fun — build, enter, get ranked](https://make.fun)](https://make.fun)
-[![📋 GTA 6 Cover Art competition API — make.fun](https://make.fun/api/competitions/gta6-cover-art-01)](https://make.fun/api/competitions/gta6-cover-art-01)
+[![make.fun · gta6-cover-art-01](https://make.fun/badge/gta6-cover-art-01.svg)](https://make.fun/bounty/gta6-cover-art-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-cover-art-01)
+[![rank](https://make.fun/badge/gta6-cover-art-01/Xyzvixx/gta6-cover-art-01/rank.svg)](https://make.fun/bounty/gta6-cover-art-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=gta6-cover-art-01)
+[![reward](https://make.fun/badge/gta6-cover-art-01/Xyzvixx/gta6-cover-art-01/reward.svg)](https://make.fun/bounty/gta6-cover-art-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-cover-art-01)
 
 **Vice Cover Studio** turns any photo and a caption into GTA-style
 multi-panel cover art — the Vice City sunset poster look, with bold Bebas
