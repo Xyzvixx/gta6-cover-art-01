@@ -95,3 +95,57 @@ date, pushed commit, duplicate snapshot).
 - The sliced sun is visible in the vice layout's sky strip and in the
   no-photo placeholder; triptych/strip covers are photo-led, with the
   grade carried by the title band, frames and photo tint.
+
+## Round 2 fix (recorded session, 19 Nov 2026)
+
+Feature: **Story export 1080x1920 (9:16)** — a fourth export size for
+Instagram / TikTok stories.
+- `app/src/cover.js`: `SIZES` gains `story: [1080, 1920]`. The export path
+  (`exportPNG`) is generic over the size key, so no export logic changed.
+- `app/index.html`: fourth size button (`data-size="story"`, label
+  `1080 x 1920`); the size picker wiring is generic over `[data-size]`,
+  so it picks the new button up with no code change. Also added an inline
+  SVG data-URI favicon (the browser's automatic `/favicon.ico` request was
+  404ing on every load and logging a console error) and updated the meta
+  description to list all four export sizes.
+- `app/style.css`: `.size-row` is now a 2x2 grid (`repeat(2, 1fr)`) so the
+  four size buttons fit the 360px controls column without wrapping.
+- `app/src/shots.js`: the `?shot=` size allowlist gains `'story'`, so the
+  story scene can be staged for screenshots.
+- `shots.json`: entry 2's height corrected 720 -> 1280: the editor file is
+  1280x1280 (the old value was a copy-paste of entry 1). No fifth entry:
+  the dossier builder caps screenshots at 4, so the story shot stays out
+  of the repo (kept as verify evidence in
+  `/tmp/gca-r2-verify/out/5-cover-story.jpg`, 720x1280, 111,892 B).
+- `README.md`: rewritten fresh from the blueprint (new prose, new
+  structure), with the 3 live make.fun badges.
+- `screenshots/2-editor.jpg`: regenerated (1280x1280, 200,270 B) — the old
+  file was 919x1280 and showed the stale 3-button size row. `1/3/4-cover`
+  kept: re-shoots are the same scenes (mean pixel diff vs repo 2.85-3.83,
+  JPEG re-encode only). A story cover shot was rendered during verify
+  (`?shot=cover&photo=pier&caption=VICE%20DAWN&layout=poster&grade=sunset&size=story`,
+  720x1280, 111,892 B, within caps) but is NOT in the repo: the dossier
+  builder enforces max 4 screenshots, and the four brief sizes take
+  priority; the file is kept as evidence in `/tmp/gca-r2-verify/out/`.
+
+Verification — new script `/tmp/pwtools/verify-r2.mjs` (the old
+`/tmp/pwtools/verify.mjs` is stale: it uses pre-Build-3 ids such as
+`#cover`, `#export`, `[data-size="1080x1080"]`, so it cannot run against
+the current UI): **30/30 PASS**.
+- Story size: button present, selects + previews at 1080x1920, export is
+  exactly 1080x1920 (3,264,134 bytes); all 3 old sizes still export exact.
+- Story export deterministic: two downloads byte-identical (same sha256).
+- Double-click guard: two synchronous dispatches -> 1 download; two
+  concurrent `exportPNG` calls -> second returns null.
+- Crop survives size switch via story and 5 layout switches (keyboard
+  zoom `+` + arrow-key pan; mouse drag at minimum zoom has no slack to
+  move, and the wheel needs the cursor inside the hero panel).
+- Reset restores defaults and matches a fresh load byte-for-byte
+  (default title is `PICK ME, JUDGE`, not the stale script's
+  `SUNSET HEIST`). Replace-then-load: replacing slot 1 repaints its
+  panels, panel 2 keeps its assignment. Export is disabled while a photo
+  is loading (verified with a route-delayed sample request). 1-click cover
+  preserves the caption. Ink toggle repaints the hero panel. All 4
+  layouts and all 4 grades render non-blank at story size.
+- 0 page errors, 0 console errors, 0 external requests (10 local requests
+  total). All 5 screenshots within the 256 KiB cap, long side <= 1280.
