@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Cover Studio — GTA-style cover art maker</title>
+<meta name="description" content="Turn any photo and caption into GTA-style multi-panel cover art, offline in your browser. Export 1080x1080, 1080x1350 or 1920x1080 PNG.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true">☀</span>
+    <div>
+      <h1>VICE COVER STUDIO</h1>
+      <p class="tagline">Your photo. Your caption. One striking cover.</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button id="oneClickBtn" class="btn btn-primary" type="button" title="Load a sample photo and export a 1080x1080 PNG in one click">⚡ 1-Click Cover</button>
+    <button id="resetBtn" class="btn" type="button">Reset</button>
+  </div>
+</header>
+
+<main class="layout">
+  <section class="panel controls" aria-label="Cover controls">
+    <h2>1 · Photos</h2>
+    <p class="hint">Photos stay on your machine — nothing is uploaded.</p>
+    <div class="slots" id="slots"></div>
+    <div class="row">
+      <button id="samplePierBtn" class="btn btn-small" type="button">Sample: Pier</button>
+      <button id="sampleBlvdBtn" class="btn btn-small" type="button">Sample: Boulevard</button>
+      <button id="autoDistBtn" class="btn btn-small" type="button" title="Spread the loaded photos across the panels">Auto-distribute</button>
+    </div>
+
+    <h2>2 · Layout &amp; grade</h2>
+    <div class="field">
+      <label for="layoutSel">Layout</label>
+      <select id="layoutSel">
+        <option value="vice">Vice Cover — hero + 2 panels</option>
+        <option value="poster">Poster — full bleed</option>
+        <option value="triptych">Triptych — 3 vertical panels</option>
+        <option value="strip">Strip — 2 panels + title band</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Grade</label>
+      <div class="grade-row" id="gradeRow" role="radiogroup" aria-label="Colour grade"></div>
+    </div>
+
+    <h2>3 · Caption</h2>
+    <div class="field">
+      <label for="titleInput">Title</label>
+      <input id="titleInput" type="text" value="PICK ME, JUDGE" maxlength="48" autocomplete="off">
+    </div>
+    <div class="field">
+      <label for="subtitleInput">Subtitle</label>
+      <input id="subtitleInput" type="text" value="YOUR NEXT WINNER" maxlength="64" autocomplete="off">
+    </div>
+    <div class="field">
+      <label for="titleStyleSel">Lettering</label>
+      <select id="titleStyleSel">
+        <option value="solid">Solid — white fill, hard shadow</option>
+        <option value="outline">Outline — neon stroke</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Caption presets</label>
+      <div class="preset-row" id="presetRow"></div>
+    </div>
+
+    <h2>4 · Selected panel</h2>
+    <p class="hint" id="selectedLabel">Click a panel on the cover to select it. Drag to pan, scroll to zoom.</p>
+    <div class="field">
+      <label for="panelPhotoSel">Photo in panel</label>
+      <select id="panelPhotoSel">
+        <option value="0">Photo 1</option>
+        <option value="1">Photo 2</option>
+        <option value="2">Photo 3</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="zoomRange">Zoom <span id="zoomVal">100%</span></label>
+      <input id="zoomRange" type="range" min="50" max="300" value="100">
+    </div>
+    <div class="row">
+      <button id="fitFillBtn" class="btn btn-small" type="button">Fit / Fill: Fill</button>
+      <button id="inkBtn" class="btn btn-small" type="button" aria-pressed="false">Ink: Off</button>
+    </div>
+    <p class="hint">Keys: ← → ↑ ↓ nudge photo · + / − zoom · 1/2/3 select panel</p>
+
+    <h2>5 · Export PNG</h2>
+    <div class="size-row" id="sizeRow" role="radiogroup" aria-label="Export size">
+      <button class="btn size-btn is-active" type="button" data-size="square">1080 × 1080</button>
+      <button class="btn size-btn" type="button" data-size="portrait">1080 × 1350</button>
+      <button class="btn size-btn" type="button" data-size="wide">1920 × 1080</button>
+    </div>
+    <button id="exportBtn" class="btn btn-primary btn-block" type="button">Export PNG</button>
+    <p class="status" id="statusLine" role="status">Ready — load a photo or try a sample.</p>
+    <p class="privacy">🔒 Offline by design: your photos are read on this machine only and never leave it. No Rockstar logo, artwork or fonts — all art here is drawn fresh by this app.</p>
+  </section>
+
+  <section class="panel stage" aria-label="Live preview">
+    <div class="stage-head">
+      <h2>Live preview</h2>
+      <span class="stage-size" id="previewSizeLabel">1080 × 1080</span>
+    </div>
+    <div class="canvas-wrap">
+      <canvas id="coverCanvas" width="1080" height="1080" tabindex="0" aria-label="Cover preview. Click a panel to select it."></canvas>
+    </div>
+    <p class="hint">Tip: one photo can fill every panel — pick the same photo in each panel, or press Auto-distribute.</p>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>Vice Cover Studio — an original cover maker. Not affiliated with Rockstar Games.</span>
+  <span id="footNote">Bebas Neue (SIL OFL) · samples free to use</span>
+</footer>
+
+<script type="module" src="src/main.js"></script>
+<script type="module" src="src/shots.js"></script>
+</body>
+</html>
