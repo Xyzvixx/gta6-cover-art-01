@@ -1,4 +1,11 @@
+# Dependencies & build outputs
 node_modules/
 out/
+dist/
+
+# OS & editor files
 .DS_Store
+
+# Logs & temp files
 *.log
+*.tmp
